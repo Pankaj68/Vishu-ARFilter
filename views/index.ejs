@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greeting Card Generator</title>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+<style>
+body {
+  margin: 0;
+  background: #000;
+  font-family: Arial, sans-serif;
+}
+
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#cameraScreen,
+#resultScreen,
+#cread {
+  display: none;
+}
+#cameraScreen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+}
+
+#cameraScreen video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 🔥 FRAME */
+#frameOverlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* object-fit: contain;   or cover if needed */
+  pointer-events: none; /* allow button clicks */
+  z-index: 2;
+}
+
+#captureBtn {
+  position: absolute;
+  bottom: 12%;
+  z-index: 3;
+}
+button, input {
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 10px;
+}
+#captureBtn{
+    position: absolute;
+    bottom: 12%;
+}
+button {
+  background: #ff3d00;
+  color: #fff;
+}
+#nameDisplay , #nameformDisplay {
+  
+  background: transparent;
+  border: none;
+  outline: none;
+
+  color: #fff;
+  font-size: 36px;
+  font-weight: bold;
+
+  width: 300px;
+}
+
+#previewImg {
+  width: 220px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+/* ===== FINAL TEMPLATE ===== */
+#cread {
+ 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background-color: #fff;
+
+  
+}
+#creadsContent {
+  position: relative;
+  width: 100%;
+  height: 80%;
+  background-image: url("/assets/template.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+/* TO NAME */
+#nameDisplay {
+  position: absolute;
+  top: 26%;
+    left: 17%;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+#nameformDisplay {
+    position: absolute;
+    bottom: 12.5%;
+    left: 13%;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+/* PHOTO */
+#creadImg {
+      /* position: absolute; */
+   position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+    /* object-fit: inherit; */
+  opacity: 1;
+}
+#share{    position: absolute;
+    bottom: 4%;}
+button:disabled {
+  background: #555;        /* greyed out */
+  color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+.background-image {
+  display: none;
+  background: #391016;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  z-index: 100000;
+  justify-content: center;
+  align-items: center;
+  /* margin-right: 12%; */
+}
+
+
+@media only screen and (min-width: 768px) {
+  .background-image {
+    display: flex;
+  }
+
+  .main-screen {
+    display: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+  <div class=" background-image">
+ 
+  <div class="experience-link" >
+    <p style="font-size: 1.5rem; color: #fff;">
+      This experience is only available on your mobile phone
+
+    </p>
+    <!-- <img src="assets/img/qr-code-img.png" alt="qr-code-img"> -->
+   
+  </div>
+</div>
+<!-- START -->
+<div id="startScreen" class="screen">
+  <button id="startBtn">Start Camera</button>
+</div>
+
+<!-- CAMERA -->
+<div id="cameraScreen" class="screen">
+  <video id="video" autoplay playsinline></video>
+<div id="frameBox">
+   <img id="frameOverlay" src="/assets/SLIDE 3.png" />
+</div>
+  <button id="captureBtn">Capture Photo</button>
+</div>
+
+<!-- RESULT -->
+
+
+<!-- FINAL TEMPLATE -->
+<div id="cread">
+    
+  <img id="creadImg">
+  
+  <button id="share" >Share Card</button>
+
+</div>
+
+<script src="/main-bundled.js"></script>
+
+</body>
+</html>
